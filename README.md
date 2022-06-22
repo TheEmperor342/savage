@@ -22,6 +22,6 @@ Tux in [Catppuccin](https://github.com/catppuccin/catppuccin)
 
 ## TODOS
 
-- Host on GitHub pages if possible
+- Get heroku to work
 - Add more SVGs
 - Documentation
