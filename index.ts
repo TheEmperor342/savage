@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import clr from "./defaultColors.json";
 import { config } from "dotenv";
-import { getText } from "./firebase";
+import { getText } from "./supabase";
 config();
 
 const app = express();
