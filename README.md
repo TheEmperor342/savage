@@ -22,6 +22,6 @@ Tux in [Catppuccin](https://github.com/catppuccin/catppuccin)
 
 ## TODOS
 
-- Get heroku to work
-- Add more SVGs
+- ~~Get heroku to work~~ [Its finally working](https://svgimageapi.herokuapp.com/api?img=tux)
+- Add more SVG
 - Documentation
