@@ -1,0 +1,50 @@
+.content {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-inline: 2rem;
+}
+.content > :first-child {
+  width: 35rem;
+}
+.type-container {
+  height: 100%;
+  width: 57ch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.typeHTML {
+  display: flex;
+  animation: 3s typingHTML linear;
+  white-space: nowrap;
+  overflow-x: hidden;
+  border-right: 2px solid var(--txt);
+}
+.typeMD {
+  display: flex;
+  animation: 3s typingMD linear;
+  white-space: nowrap;
+  overflow-x: hidden;
+  border-right: 2px solid var(--txt);
+}
+@keyframes typingHTML {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 52ch;
+  }
+}
+@keyframes typingMD {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 57ch;
+  }
+}

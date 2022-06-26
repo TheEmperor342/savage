@@ -30,3 +30,15 @@ export async function getText(item: string): Promise<string | null> {
 
   return dwnload.data?.text() === undefined ? null : dwnload.data?.text();
 }
+export async function list(): Promise<null | Array<string>> {
+  const ls = await supabase.storage.from("dev").list();
+  const images: string[] = [];
+  if (ls.error) {
+    console.log(ls.error);
+    return null;
+  }
+  ls.data?.forEach((item, index) => {
+    images.push(item.name);
+  });
+  return images;
+}

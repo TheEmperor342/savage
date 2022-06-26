@@ -1,0 +1,21 @@
+.GET code::before {
+  content: "GET";
+  background-color: var(--blue);
+  border-radius: 5px;
+  margin-right: 5px;
+  padding-inline: 0.5rem;
+  padding-block: 0.1rem;
+  color: var(--nav-bg);
+}
+.content {
+  /* padding-left: 15rem; */
+  display: flex;
+  flex-direction: column;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px - 2rem);
+}
+.content h1 {
+  margin-top: 2rem;
+}

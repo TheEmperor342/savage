@@ -1,14 +1,15 @@
 import express, { Request, Response } from "express";
 import clr from "./defaultColors.json";
 import { config } from "dotenv";
-import { getText } from "./supabase";
+import { getText, list } from "./supabase";
 config();
 
 const app = express();
+app.use(express.static("./static"));
 
 app.get("/api", async (req: Request, res: Response) => {
+  const errImg = await getText("error");
   let img = req.query.img;
-  let errImg = await getText("error");
   res.set("Content-Type", "image/svg+xml");
 
   if (img === undefined) {
@@ -51,6 +52,23 @@ app.get("/api", async (req: Request, res: Response) => {
   } catch (e) {
     res.status(500).end(errImg!);
   }
+});
+
+app.get("/list", async (req: Request, res: Response) => {
+  const images = await list();
+  if (images === null) {
+    res.set("Content-Type", "image/svg+xml");
+    res.end(await getText("error"));
+    return null;
+  }
+  let val = "";
+  for (let i = 0; i < images.length; i++) {
+    if (images.at(i) === "error.svg") continue;
+    val += `<a href=/api?img=${images.at(i)?.slice(0, -4)}>${images
+      .at(i)
+      ?.slice(0, -4)}</a><br/>`;
+  }
+  res.end(val);
 });
 
 const port = process.env.PORT || 3000;
