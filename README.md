@@ -6,19 +6,19 @@ Get SVG images with custom images
 
 Discord in default color
 
-![discord_default](./readmeImages/discord-default.png)
+![discord_default](https://svgimageapi.herokuapp.com/api?img=discord)
 
 Discord in black color
 
-![discord_black](./readmeImages/discord-black.png)
+![discord_black](https://svgimageapi.herokuapp.com/api?img=discord&_1=000)
 
 Tux in default colors
 
-![tux_default](./readmeImages/tux-default.png)
+<img src='https://svgimageapi.herokuapp.com/api?img=tux' height='150px'/>
 
 Tux in [Catppuccin](https://github.com/catppuccin/catppuccin)
 
-![tux_catppuccin](./readmeImages/tux-catppuccin.png)
+<img src='https://svgimageapi.herokuapp.com/api?img=tux&_1=11111b&_2=fab387&_3=cdd6f4' height='150px'/>
 
 ## TODOS
 

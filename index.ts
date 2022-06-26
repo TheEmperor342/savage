@@ -24,7 +24,7 @@ app.get("/api", async (req: Request, res: Response) => {
 
     // === ARRAY OF THE NUMBER OF COLORS IN SVG === //
     let colors: string[] = [];
-    Array.from(data.matchAll(/#[1-9]/g)).forEach((item, index) => {
+    Array.from(data.matchAll(/#_[1-9]/g)).forEach((item, index) => {
       if (!colors.includes(item.at(0)!)) colors.push(item.at(0)!);
     });
 
@@ -37,6 +37,7 @@ app.get("/api", async (req: Request, res: Response) => {
     }
 
     let output = data;
+
     colors!.forEach((item, index) => {
       output = output.replace(
         new RegExp(item, "g"),
