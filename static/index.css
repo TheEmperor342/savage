@@ -1,13 +1,9 @@
 .content {
   height: calc(100vh - 70px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-inline: 2rem;
-}
-.content > :first-child {
-  max-width: 35rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  margin-inline: 1.5rem;
 }
 
 .type-container {
@@ -51,20 +47,16 @@
 
 @media (max-width: 1058px) {
   .content {
-    flex-direction: column;
-    justify-content: center;
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 667px) {
   .content {
+    grid-template-columns: 1fr;
     margin-inline: none;
   }
-  .typeHTML,
-  .typeMD {
-    font-size: 0.54rem;
-  }
   .type-container {
-    width: auto;
+    display: none;
   }
 }

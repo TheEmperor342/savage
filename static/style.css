@@ -47,6 +47,10 @@ nav > :last-child {
   gap: 1rem;
 }
 
+.content {
+  overflow-y: scroll;
+}
+
 a {
   text-decoration: none;
   color: var(--txt);
@@ -71,4 +75,3 @@ span {
   -webkit-background-clip: text;
   color: transparent;
 }
-

@@ -8,13 +8,13 @@
   color: var(--nav-bg);
 }
 .content {
-  display: flex;
+  display: grid;
   flex-direction: column;
-  margin-inline: 1rem;
+  padding-inline: 1rem;
   flex-direction: center;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 70px - 2rem);
+  height: calc(100vh - 2rem - 70px);
 }
 .content h1 {
   margin-top: 2rem;
