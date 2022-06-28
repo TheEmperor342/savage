@@ -19,3 +19,8 @@
 .content h1 {
   margin-top: 2rem;
 }
+@media (max-width: 428px) {
+  .GET {
+    font-size: 0.7rem;
+  }
+}

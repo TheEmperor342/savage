@@ -75,3 +75,12 @@ span {
   -webkit-background-clip: text;
   color: transparent;
 }
+
+@media (max-width: 428px) {
+  p {
+    font-size: 0.8rem;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+}
