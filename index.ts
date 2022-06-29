@@ -38,7 +38,6 @@ app.get("/api", async (req: Request, res: Response) => {
     }
 
     let output = data;
-
     colors!.forEach((item, index) => {
       output = output.replace(
         new RegExp(item, "g"),
@@ -50,6 +49,7 @@ app.get("/api", async (req: Request, res: Response) => {
     });
     res.status(200).end(output);
   } catch (e) {
+    console.log("api route error: ", e);
     res.status(500).end(errImg!);
   }
 });
