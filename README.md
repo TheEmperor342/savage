@@ -2,6 +2,9 @@
 
 Get SVG images with custom images
 
+> The website stopped working cuz supabase paused the project and
+> I'm too lazy to update it kek
+
 ## API in action
 
 Discord in default color
