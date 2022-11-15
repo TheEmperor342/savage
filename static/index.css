@@ -1,0 +1,46 @@
+.home h1 {
+  font-size: 5rem;
+}
+.home {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at center, var(--surface0) 0,var(--bg), var(--nav-bg) 100%);
+}
+.home button {
+  margin-top: 1.5rem;
+}
+
+.GET::before {
+  content: "GET";
+  background-color: var(--blue);
+  border-radius: 5px;
+  color: var(--nav-bg);
+  padding: 5px 10px 5px 10px;
+  margin-right: 10px;
+}
+
+.usage {
+  padding-left: 6rem;
+  padding-block: 5rem;
+}
+
+@media screen and (max-width: 404px) {
+  nav {
+    padding-inline: 5px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .usage {
+    padding-left: 1rem;
+  }
+  .centerer {
+    margin-inline: 2rem;
+  }
+  code {
+    width: 75vw;
+  }
+}

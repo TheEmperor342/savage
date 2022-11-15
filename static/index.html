@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SVG Image API</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body>
+		<nav>
+			<a href="#">
+				<img
+					id="pfp"
+					src="https://avatars.githubusercontent.com/u/83999665?v=4"
+					width="50"
+				/>
+				<!-- An extremely creative name -->
+				<h2><span> |</span> SaVaGe</h2>
+			</a>
+			<div>
+				<a href="#home"><p>Home</p></a>
+				<a href="#usage"><p>Usage</p></a>
+			</div>
+		</nav>
+
+		<div class="home" id="home">
+			<h1><span>S</span>a<span>V</span>a<span>G</span>e</h1>
+			<p>Change colors of your svg without any hassle!</p>
+      <a href="https://github.com/TheEmperor342/savage"><button>Check out the source code!</button></a>
+		</div>
+
+		<div class="usage" id="usage">
+			<h1><span>How to use Savage?</span></h1> <br/>
+			<p>You can easily interact with savage through the API</p>
+			<p>For example, here's a JavaScript logo:</p>
+			<br />
+			<br />
+			<div class="centerer">
+				<code class="GET">https://savage.onrender.com/img?img=javascript</code>
+				<img src="/img?img=javascript" width="150" />
+			</div> <br/> <br/>
+      <p><a href="/list"><span>Here</span></a> is a list of all available SVGs</p>
+      <br/>
+      <h2><span>That's cool, but how to change its colors?</span></h2> <br/>
+      <p>Each SVG has color codes in it. The colors are given serial numbers which you can query in the url to change its colors.</p>
+      <p>Let's change the colors of the JavaScript logo:</p>
+      <br />
+			<br />
+			<div class="centerer">
+				<code class="GET">https://savage.onrender.com/img?img=javascript&1=f9e2af&2=11111b</code>
+				<img src="/img?img=javascript&1=f9e2af&2=11111b" width="150" />
+			</div>
+		</div>
+	</body>
+</html>
