@@ -1,77 +1,60 @@
-import express, { Request, Response } from "express";
-import clr from "./defaultColors.json";
-import { config } from "dotenv";
-import { getText, list } from "./supabase";
-config();
+import express from "express";
+import { readdirSync, readFileSync } from "fs";
 
-const app = express();
-app.use(express.static("./static"));
+const app: express.Application = express();
+const port: number = 3000;
 
-app.get("/api", async (req: Request, res: Response) => {
-  const errImg = await getText("error");
-  let img = req.query.img;
-  res.set("Content-Type", "image/svg+xml");
+app.get("/img", (req: express.Request, res: express.Response) => {
+	res.set("Content-Type", "image/svg+xml");
+	const img: string = req.query.img as string;
 
-  if (img === undefined) {
-    res.status(400).end(errImg!);
-    return null;
-  }
-  try {
-    const data = await getText(img as string);
-    if (data === null) {
-      res.status(400).end(errImg!);
-      return null;
-    }
+	// === CHECK IF IMAGE EXISTS === //
+	if (!readdirSync("./images/").includes(`${img}.svg`)) {
+		res.status(400).end(readFileSync(`./images/error.svg`, "utf-8"));
+		return null;
+	}
 
-    // === ARRAY OF THE NUMBER OF COLORS IN SVG === //
-    let colors: string[] = [];
-    Array.from(data.matchAll(/#_[1-9]/g)).forEach((item, index) => {
-      if (!colors.includes(item.at(0)!)) colors.push(item.at(0)!);
-    });
+	let imgText: string = readFileSync(`./images/${img}.svg`, "utf-8");
 
-    // === CHECK IF COLORS ARE PROVIDED === //
-    let clrs: boolean[] = [];
-    let compareArr: boolean[] = [];
-    for (let i = 0; i < colors.length; i++) {
-      clrs.push(req.query[`_${i + 1}`] !== undefined);
-      compareArr.push(false);
-    }
+	// === GET ALL COLORS IN THE SVG === //
+	const colorsInImg: string[] = [];
+	for (let i of [...new Set(imgText.match(/#([a-f0-9]{6}|[a-f0-9]{3})/gi))])
+		colorsInImg.push(`${i.slice(1)}`);
 
-    let output = data;
-    colors!.forEach((item, index) => {
-      output = output.replace(
-        new RegExp(item, "g"),
-        JSON.stringify(clrs) === JSON.stringify(compareArr)
-          ? //@ts-ignore
-            clr[`#${img}`][`#${index + 1}`]
-          : `#${req.query[`_${index + 1}`]}`
-      );
-    });
-    res.status(200).end(output);
-  } catch (e) {
-    console.log("api route error: ", e);
-    res.status(500).end(errImg!);
-  }
+	// === CHECK WHICH COLORS ARE PROVIDED BY THE USER === //
+	const colorsByUser: boolean[] = [];
+	for (let i = 0; i < colorsInImg.length; i++)
+		colorsByUser.push(req.query[`${i + 1}`] !== undefined);
+
+	// === FINAL COLORS TO ADD IN SVG === //
+	const colors: string[] = [];
+	let index: number, isColorInputted: boolean;
+	for ([index, isColorInputted] of colorsByUser.entries())
+		colors.push(
+			isColorInputted
+				? (req.query[`${index + 1}`] as string)
+				: colorsInImg.at(index)!
+		);
+
+	// === ADD COLORS TO SVG === //
+	let color: string;
+	for ([index, color] of colors.entries()) {
+		imgText = imgText.replace(
+			new RegExp(`#${colorsInImg.at(index)}`),
+			`#${color}`
+		);
+	}
+
+	res.status(200).end(imgText);
 });
 
-app.get("/list", async (req: Request, res: Response) => {
-  const images = await list();
-  if (images === null) {
-    res.set("Content-Type", "image/svg+xml");
-    res.end(await getText("error"));
-    return null;
-  }
-  let val = "";
-  for (let i = 0; i < images.length; i++) {
-    if (images.at(i) === "error.svg") continue;
-    val += `<a href=/api?img=${images.at(i)?.slice(0, -4)}>${images
-      .at(i)
-      ?.slice(0, -4)}</a><br/>`;
-  }
-  res.end(val);
+app.get("/list", (req: express.Request, res: express.Response) => {
+	const images: string[] = [];
+	for (let i of readdirSync("./images/"))
+		images.push(`<a href='/api?img=${i}'>${i.slice(0, -4)}</a> <br/>`);
+	res.status(400).end(images.join(""));
 });
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+	console.log(`App hosted on port ${port}`);
 });

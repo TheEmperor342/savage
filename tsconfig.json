@@ -3,7 +3,6 @@
     "target": "es6",
     "module": "commonjs",
     "rootDir": "./",
-    "resolveJsonModule": true,
     "outDir": "./build",
     "esModuleInterop": true,
     "strict": true
