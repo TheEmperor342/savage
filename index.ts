@@ -2,7 +2,7 @@ import express from "express";
 import { readdirSync, readFileSync } from "fs";
 
 const app: express.Application = express();
-const port: number = 3000;
+const port: number = Number(process.env.PORT) || 3001;
 
 app.get("/img", (req: express.Request, res: express.Response) => {
 	res.set("Content-Type", "image/svg+xml");
