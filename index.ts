@@ -42,7 +42,7 @@ app.get("/img", (req: express.Request, res: express.Response) => {
 	let color: string;
 	for ([index, color] of colors.entries()) {
 		imgText = imgText.replace(
-			new RegExp(`#${colorsInImg[index]}`),
+			new RegExp(`#${colorsInImg[index]}`, "g"),
 			`#${color}`
 		);
 	}
