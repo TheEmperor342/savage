@@ -53,7 +53,12 @@ app.get("/api", (req: express.Request, res: express.Response) => {
 app.get("/list", (req: express.Request, res: express.Response) => {
 	const images: string[] = [];
 	for (let i of readdirSync("./images/"))
-		images.push(`<a href='/api?img=${i}'>${i.slice(0, -4)}</a> <br/>`);
+		images.push(
+			`<a href='/api?img=${i.slice(0, i.length - 4)}'>${i.slice(
+				0,
+				i.length - 4
+			)}</a> <br/>`
+		);
 	res.status(400).end(images.join(""));
 });
 
