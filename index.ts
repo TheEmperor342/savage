@@ -6,7 +6,7 @@ const port: number = Number(process.env.PORT) || 3001;
 
 app.use(express.static("./static"));
 
-app.get("/img", (req: express.Request, res: express.Response) => {
+app.get("/api", (req: express.Request, res: express.Response) => {
 	res.set("Content-Type", "image/svg+xml");
 	const img: string = req.query.img as string;
 
