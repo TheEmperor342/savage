@@ -4,7 +4,11 @@ import { readdirSync, readFileSync } from "fs";
 const app: express.Application = express();
 const port: number = Number(process.env.PORT) || 3001;
 
-app.use(express.static("./static"));
+//app.use(express.static("./static"));
+
+app.get("/", (req: express.Request, res: express.Response) => {
+	res.redirect("https://github.com/TheEmperor342/savage");
+});
 
 app.get("/api", (req: express.Request, res: express.Response) => {
 	res.set("Content-Type", "image/svg+xml");
